@@ -116,18 +116,10 @@ if (isset($_POST['submit'])) {
                                                     <div class=" form-group">
                                                         <fieldset>
                                                             <legend>Patient Problems</legend>
-                                                            <p id="patient_problem">Lorem ipsum dolor, sit amet
-                                                                consectetur
-                                                                adipisicing elit.
-                                                                Possimus praesentium neque iste fugit distinctio
-                                                                nemo
-                                                                atque temporibus modi, dicta velit voluptatibus,
-                                                                aperiam
-                                                                officia autem odio quod ducimus consequuntur
-                                                                natus
-                                                                aliquid?</p>
+                                                            <p id="patient_problem"></p>
                                                         </fieldset>
                                                     </div>
+                                                   
 
                                                     <div class="form-group">
                                                         <label for="fess">

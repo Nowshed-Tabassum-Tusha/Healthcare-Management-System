@@ -52,7 +52,7 @@
 											<i class="ti-list"></i>
 										</div>
 										<div class="item-inner">
-											<span class="title"> Medical History </span>
+											<span class="title"> Prescription History </span>
 										</div>
 									</div>
 								</a>
