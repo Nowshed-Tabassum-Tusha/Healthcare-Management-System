@@ -13,7 +13,7 @@ if (isset($_GET['cancel'])) {
 <html lang="en">
 
 <head>
-    <title>My Prescriptions</title>
+    <title>Doctor | Appointment History</title>
 
     <link
         href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic"
@@ -45,7 +45,9 @@ if (isset($_GET['cancel'])) {
                     <section id="page-title">
                         <div class="row">
                             <div class="col-sm-8">
-                                <h1 class="mainTitle">My Prescriptions
+                                <h1 class="mainTitle">Treatment Management <a href='add-prescription.php'
+                                        class="btn btn-primary">Add
+                                        Prescripiton</a>
                                 </h1>
                             </div>
                             <ol class="breadcrumb">
@@ -75,13 +77,12 @@ if (isset($_GET['cancel'])) {
                                             <th>Prescription Body</th>
                                             <th>Tests </th>
                                             <th>Prescription Date </th>
-                                            <th>Action</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $sql = mysqli_query($con, "select *  from prescription  where prescription.patient_id='" . $_SESSION['id'] . "'");
+                                        $sql = mysqli_query($con, "select *  from prescription  where prescription.doctor_id='" . $_SESSION['id'] . "'");
                                         $cnt = 1;
                                         while ($row = mysqli_fetch_array($sql)) {
                                         ?>
@@ -92,9 +93,7 @@ if (isset($_GET['cancel'])) {
                                             <td><?php echo $row['tests']; ?></td>
                                             <td><?php echo $row['prescription_date']; ?>
                                             </td>
-                                            <td> <a href="view-medhistory.php?viewid=<?php echo $row['patient_id'];?>"><i
-                                                        class="fa fa-eye"> View Prescription</i></a></td>
-
+                                            </td>
                                         </tr>
 
                                         <?php
