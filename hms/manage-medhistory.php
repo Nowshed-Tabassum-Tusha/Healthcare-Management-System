@@ -92,7 +92,7 @@ if (isset($_GET['cancel'])) {
                                             <td><?php echo $row['tests']; ?></td>
                                             <td><?php echo $row['prescription_date']; ?>
                                             </td>
-                                            <td> <a href="view-medhistory.php?viewid=<?php echo $row['patient_id'];?>"><i
+                                            <td> <a href="view-medhistory.php?viewid=<?php echo $row['id'];?>"><i
                                                         class="fa fa-eye"> View Prescription</i></a></td>
 
                                         </tr>

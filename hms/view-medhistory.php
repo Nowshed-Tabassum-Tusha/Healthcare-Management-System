@@ -43,16 +43,27 @@ if (isset($_POST['submit'])) {
   <link href="vendor/bootstrap-datepicker/bootstrap-datepicker3.standalone.min.css" rel="stylesheet" media="screen">
   <link href="vendor/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" media="screen">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="assets/css/plugins.css">
   <link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
 </head>
 
 <body>
+
+
   <div id="app">
     <?php include('include/sidebar.php'); ?>
     <div class="app-content">
       <?php include('include/header.php'); ?>
       <div class="main-content">
+      <?php
+                                        $sql = mysqli_query($con, "SELECT prescription.*,doctors.doctorName,doctors.address as docAddress,doctors.specilization,doctors.contactno as docPhone,doctors.docEmail,users.fullName as patientName,users.address as patientAddress from prescription
+                                        JOIN doctors on prescription.doctor_id = doctors.id
+                                          JOIN users ON prescription.patient_id = users.id
+                                         where prescription.id='" . $_GET['viewid'] . "'");
+                                        $cnt = 1;
+                                        $data = mysqli_fetch_assoc($sql);
+                                        ?>
         <hr>
         <h1 class="text-center text-primary mr-5"><b>Tusha's Personal Hospital</b> </h1>
         <br>
@@ -62,20 +73,18 @@ if (isset($_POST['submit'])) {
           <div class="row justify-content-between">
             <div class="col-4">
               <span>
-                <h3 class="inline">Dr Enam </h3>
-              </span class="text-muted"><b> M.B.B.S</b>
+                <h3 class="inline"><?php echo $data["doctorName"] ?> </h3>
+              </span class="text-muted"><b> <?php echo $data['specilization'] ?></b>
               <p></p>
-              <div class="address">
-                751 Victoria 0053 street, South Statue 204
-                Hometown, US 1234
+              <div class="address"><?php echo $data['docAddress'] ?>
               </div>
             </div>
             <div></div>
             <div class="col-3">
 
-              <div class="address"> <span>Phone: </span> <span>+88 01551604161</span></div>
+              <div class="address"> <span>Phone: +88</span> <span><?php echo $data['docPhone'] ?></span></div>
               <p></p>
-              <div class="address ">FAX: (207) 808 2015 2202</div>
+              <div class="address">EMAIL: <?php echo $data['docEmail'] ?></div>
             </div>
 
           </div>
@@ -86,14 +95,14 @@ if (isset($_POST['submit'])) {
           <p class="blank-space"></p>
           <div class="row justify-content-between">
             <div class="col-4">
-              <p class="ms"><b>Name :</b> <span style="border-bottom: 1px dashed #000;"> Lorem ipsum dolor, sit amet </span></p>
-              <p class="ms"><b>Address :</b> <span style="border-bottom: 1px dashed #000;"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Adipisci, voluptates.</span></p>
+              <p class="ms"><b>Name :</b> <span style="border-bottom: 1px dashed #000;"><?php echo $data["patientName"] ?></span></p>
+              <p class="ms"><b>Address :</b> <span style="border-bottom: 1px dashed #000;"> <?php echo $data["patientAddress"] ?></span></p>
 
             </div>
             <div></div>
             <div class="col-3">
-              <p class="ms"><b>Age :</b> <span style="border-bottom: 1px dashed #000;"> 25 Sharp </span></p>
-              <p class="ms"><b>Date :</b> <span style="border-bottom: 1px dashed #000;">09/05/2020</span></p>
+              <p class="ms"><b>Age :</b> <span style="border-bottom: 1px dashed #000;"> n/a </span></p>
+              <p class="ms"><b>Date :</b> <span style="border-bottom: 1px dashed #000;"><?php echo $data["prescription_date"] ?></span></p>
 
             </div>
 
@@ -104,6 +113,9 @@ if (isset($_POST['submit'])) {
           <div class="prescription_body">
           <div class="rx">
             <span class="h1">R</span><span class="h2">x.</span>
+            <div class="p_body" style="font: 400 30px/1.5 'Pacifico', Helvetica, sans-serif;color: #2b2b2b;">
+            <?php echo $data['prescription_body'] ?>
+            </div>
 
           </div>
 
@@ -116,7 +128,7 @@ if (isset($_POST['submit'])) {
           <p class="divider"></p>
           <p class="blank-space"></p>
           <p class="blank-space"></p>
-          <h2 class="ms text-center "><b>Doctor Signature :</b> <span style="border-bottom: 1px dashed #000;">beh</span></h2>
+        
 
           </div>
 
@@ -168,6 +180,8 @@ if (isset($_POST['submit'])) {
   </script>
   <!-- end: JavaScript Event Handlers for this page -->
   <!-- end: CLIP-TWO JAVASCRIPTS -->
+
+  
 </body>
 
 </html>
