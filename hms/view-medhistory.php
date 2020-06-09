@@ -68,8 +68,6 @@ if (isset($_POST['submit'])) {
         <h1 class="text-center text-primary mr-5"><b>Tusha's Personal Hospital</b> </h1>
         <br>
         <div class="container ">
-
-
           <div class="row justify-content-between">
             <div class="col-4">
               <span>
