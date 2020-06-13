@@ -76,6 +76,8 @@ if (isset($_GET['cancel'])) {
                                             <th>Tests </th>
                                             <th>Prescription Date </th>
                                             <th>Action</th>
+                                            <th>Reports</th>
+
 
                                         </tr>
                                     </thead>
@@ -93,7 +95,9 @@ if (isset($_GET['cancel'])) {
                                             <td><?php echo $row['prescription_date']; ?>
                                             </td>
                                             <td> <a href="view-medhistory.php?viewid=<?php echo $row['id'];?>"><i
-                                                        class="fa fa-eye"> View Prescription</i></a></td>
+                                                        class="btn btn-info fa fa-eye"> View Prescription</i></a></td>
+                                                        <td> <a href="view-report.php?id=<?php echo $row['id'];?>"><i
+                                                        class="btn btn-danger fa fa-eye"> View Reports</i></a></td>
 
                                         </tr>
 

@@ -10,10 +10,15 @@ if (isset($_POST['submit'])) {
     $prescription_body = $_POST['prescription_body'];
     $appointment_id = $_POST['id'];
     $patient_id = $_POST['patient_id'];
+    $fees = $_POST['fees'];
+
     $tests = join(",", $_POST['tests']);
     $bal =  $_POST['tests'];
     echo $bal;
     $sql = mysqli_query($con, "insert into prescription(prescription_body,tests,appointment_id,doctor_id,patient_id) values('$prescription_body','$tests','$appointment_id','$docid','$patient_id')");
+    mysqli_query($con, "UPDATE users set total_due = total_due + '$fees' where id = '$patient_id'");
+
+    
     if ($sql) {
         echo "<script>alert('Patient info added Successfully');</script>";
         header('location:add-prescription.php');
@@ -129,6 +134,7 @@ if (isset($_POST['submit'])) {
                                                             class="form-control" placeholder="Write prescription here"
                                                             required="true" rows="7"></textarea>
                                                     </div>
+                                                    <input type="text" hidden name="fees" value="<?php echo $row['consultancyFees']; ?>">
                                                     <div class="form-group">
                                                         <fieldset>
                                                             <legend>Add Tests</legend>
@@ -148,6 +154,19 @@ if (isset($_POST['submit'])) {
                                                             <input class="form-check-input" type="checkbox"
                                                                 value="Temperature" name="tests[]">
                                                             Temperature
+
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="Weight" name="tests[]">
+                                                            Weight
+
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="MRI" name="tests[]">
+                                                            MRI
+                                                            <input class="form-check-input" type="checkbox"
+                                                                value="Ultrasonography" name="tests[]">
+                                                                Ultrasonography
+
+
                                                         </fieldset>
                                                     </div>
 

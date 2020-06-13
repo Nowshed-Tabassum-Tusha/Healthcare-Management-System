@@ -107,13 +107,16 @@ if (isset($_GET['status'])) {
 												</td>
 												<td><?php echo $row['status']; ?></td>
 												<td>
-													<a  href="appointment-history.php?id=<?php echo $row['id'] ?>&status=accept" class="btn btn-transparent btn-xs tooltips <?php if ($row['status'] == 'active') {
-															echo 'hide';
-														} ?>" title="Accept Appointment" tooltip-placement="top" tooltip="Remove">Accept</a> 
-													
-													<a href="appointment-history.php?id=<?php echo $row['id'] ?>&status=cancel" onClick="return confirm('Are you sure you want to cancel this appointment ?')" class="text-danger btn btn-transparent btn-xs tooltips  <?php if ($row['status'] == 'cancelled') {
-															echo 'hide';
-														} ?>" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancel</a>
+													<a href="appointment-history.php?id=<?php echo $row['id'] ?>&status=accept" class="btn btn-transparent btn-xs tooltips <?php if ($row['status'] == 'active' || $row['status'] == 'completed' || $row['status'] == 'delivered') {
+																																												echo 'hide';
+																																											} ?>" title="Accept Appointment" tooltip-placement="top" tooltip="Remove">Accept</a>
+
+													<a href="appointment-history.php?id=<?php echo $row['id'] ?>&status=cancel" onClick="return confirm('Are you sure you want to cancel this appointment ?')" class="text-danger btn btn-transparent btn-xs tooltips  <?php if ($row['status'] == 'cancelled' || $row['status'] == 'completed' || $row['status'] == 'delivered') {
+																																																																			echo 'hide';
+																																																																		} ?>" title="Cancel Appointment" tooltip-placement="top" tooltip="Remove">Cancel</a>
+													<a href="deliver_report.php?id=<?php echo $row['id'] ?>" class="btn btn-transparent btn-xs tooltips  <?php if ($row['status'] != 'completed' || $row['status'] == 'delivered') {
+																																								echo 'hide';
+																																							} ?>" title="Deliver Report"><b>Deliver Report</b></a>
 
 												</td>
 											</tr>

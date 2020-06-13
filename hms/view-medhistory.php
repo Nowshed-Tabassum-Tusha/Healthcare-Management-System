@@ -56,14 +56,15 @@ if (isset($_POST['submit'])) {
     <div class="app-content">
       <?php include('include/header.php'); ?>
       <div class="main-content">
-      <?php
-                                        $sql = mysqli_query($con, "SELECT prescription.*,doctors.doctorName,doctors.address as docAddress,doctors.specilization,doctors.contactno as docPhone,doctors.docEmail,users.fullName as patientName,users.address as patientAddress from prescription
+        
+        <?php
+        $sql = mysqli_query($con, "SELECT prescription.*,doctors.doctorName,doctors.address as docAddress,doctors.specilization,doctors.contactno as docPhone,doctors.docEmail,users.fullName as patientName,users.address as patientAddress from prescription
                                         JOIN doctors on prescription.doctor_id = doctors.id
                                           JOIN users ON prescription.patient_id = users.id
                                          where prescription.id='" . $_GET['viewid'] . "'");
-                                        $cnt = 1;
-                                        $data = mysqli_fetch_assoc($sql);
-                                        ?>
+        $cnt = 1;
+        $data = mysqli_fetch_assoc($sql);
+        ?>
         <hr>
         <h1 class="text-center text-primary mr-5"><b>Tusha's Personal Hospital</b> </h1>
         <br>
@@ -109,24 +110,24 @@ if (isset($_POST['submit'])) {
           <p class="blank-space"></p>
 
           <div class="prescription_body">
-          <div class="rx">
-            <span class="h1">R</span><span class="h2">x.</span>
-            <div class="p_body" style="font: 400 30px/1.5 'Pacifico', Helvetica, sans-serif;color: #2b2b2b;">
-            <?php echo $data['prescription_body'] ?>
-            </div>
+            <div class="rx">
+              <span class="h1">R</span><span class="h2">x.</span>
+              <div class="p_body" style="font: 400 30px/1.5 'Pacifico', Helvetica, sans-serif;color: #2b2b2b;">
+                <?php echo $data['prescription_body'] ?>
+              </div>
 
-          </div>
+            </div>
 
 
 
           </div>
 
           <div class="prescription_footer">
-          <p class="blank-space"></p>
-          <p class="divider"></p>
-          <p class="blank-space"></p>
-          <p class="blank-space"></p>
-        
+            <p class="blank-space"></p>
+            <p class="divider"></p>
+            <p class="blank-space"></p>
+            <p class="blank-space"></p>
+
 
           </div>
 
@@ -179,7 +180,7 @@ if (isset($_POST['submit'])) {
   <!-- end: JavaScript Event Handlers for this page -->
   <!-- end: CLIP-TWO JAVASCRIPTS -->
 
-  
+
 </body>
 
 </html>

@@ -427,11 +427,44 @@ CREATE TABLE `prescription` (
 
 ALTER TABLE `appointment`
   ADD `patient_problem` longtext;
-COMMIT;
+
 
 ALTER TABLE `appointment`
   ADD `status` varchar(255) DEFAULT 'pending';
-COMMIT;
+
+
+CREATE TABLE `prescription` (
+  `id` int(11) AUTO_INCREMENT NOT NULL,
+  `prescription_body` longtext DEFAULT NULL,
+  `tests` longtext DEFAULT NULL,
+  `appointment_id` varchar(255) DEFAULT NULL,
+  `doctor_id` int(11) DEFAULT NULL,
+  `patient_id` int(11) DEFAULT NULL,
+  `prescription_date` timestamp DEFAULT  current_timestamp(),
+  primary key (id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `report` (
+  `id` int(11) AUTO_INCREMENT NOT NULL,
+  `prescription_id` varchar(255) DEFAULT NULL,
+  `Blood` varchar(255) DEFAULT NULL,
+  `Urine` varchar(255) DEFAULT NULL,
+  `Pressure` varchar(255) DEFAULT NULL,
+  `Weight` varchar(255) DEFAULT NULL,
+  `Ultrasonography` varchar(255) DEFAULT NULL,
+  `MRI` varchar(255) DEFAULT NULL,
+  `Temperature` varchar(255) DEFAULT NULL,
+  `Cost` varchar(255) DEFAULT NULL,
+  `Paid` varchar(255) DEFAULT 'False',
+  `report_date` timestamp DEFAULT  current_timestamp(),
+  primary key (id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `users`
+  ADD `total_due` int(11) DEFAULT 0;
+  
+ALTER TABLE `users`
+  ADD `total_paid`  int(11) DEFAULT 0;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
