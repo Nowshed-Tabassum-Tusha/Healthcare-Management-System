@@ -19,19 +19,16 @@ if (isset($_POST['submit'])) {
     $MRI = isset($_POST['MRI']) ? $_POST['MRI'] : NULL;
     $Temperature = isset($_POST['Temperature']) ? $_POST['Temperature'] : NULL;
     $Cost = isset($_POST['Cost']) ? $_POST['Cost'] : NULL;
-    var_dump($Blood, $Apointment_Id, $Ultrasonography, $Cost);
-
 
     $query = mysqli_query($con, "INSERT into report(prescription_id,Blood,Urine,Pressure,Weight,Ultrasonography,MRI,Temperature,Cost) values('$Apointment_Id','$Blood','$Urine','$Pressure','$Weight','$Ultrasonography','$MRI','$Temperature','$Cost')");
     if ($query) {
         mysqli_query($con, "UPDATE appointment set status = 'delivered' where id = '$Apointment_Id'");
-        $appointment = mysqli_query($con, "select * from  appointment  where id = '$Apointment_Id'");
-        $user_id = $appointment['userId'];
-
+        $appointment = mysqli_query($con, "SELECT * from  appointment  where id = '$Apointment_Id'");
+        $data = mysqli_fetch_assoc($appointment);
+        $user_id = $data['userId'];
+        echo $user_id;
         mysqli_query($con, "UPDATE users set total_due = total_due + '$Cost' where id = '$user_id'");
-
         header('location:appointment-history.php');
-        echo "<script>alert('Your appointment successfully booked');</script>";
     }
 }
 ?>

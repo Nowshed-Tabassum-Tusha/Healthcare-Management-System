@@ -1,6 +1,7 @@
 <?php
 function check_login()
 {
+// Session['login']=''
 if(strlen($_SESSION['login'])==0)
 	{	
 		$host = $_SERVER['HTTP_HOST'];

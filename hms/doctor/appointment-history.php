@@ -97,24 +97,7 @@ while($row=mysqli_fetch_array($sql))
 												 $row['appointmentTime'];?>
 												</td>
 												<td><?php echo $row['postingDate'];?></td>
-												<td>
-<?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  
-{
-	echo "Active";
-}
-if(($row['userStatus']==0) && ($row['doctorStatus']==1))  
-{
-	echo "Cancel by Patient";
-}
-
-if(($row['userStatus']==1) && ($row['doctorStatus']==0))  
-{
-	echo "Cancel by you";
-}
-
-
-
-												?></td>
+												<td><?php echo $row['status']; ?></td>
 												<td >
 												<div class="visible-md visible-lg hidden-sm hidden-xs">
 							<?php if(($row['userStatus']==1) && ($row['doctorStatus']==1))  

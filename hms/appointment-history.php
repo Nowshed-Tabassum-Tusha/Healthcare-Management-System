@@ -82,7 +82,7 @@ if (isset($_GET['cancel'])) {
 									</thead>
 									<tbody>
 										<?php
-										$sql = mysqli_query($con, "select doctors.doctorName as docname,appointment.*  from appointment join doctors on doctors.id=appointment.doctorId where appointment.userId='" . $_SESSION['id'] . "'");
+										$sql = mysqli_query($con, "SELECT doctors.doctorName as docname,appointment.*  from appointment join doctors on doctors.id=appointment.doctorId where appointment.userId='" . $_SESSION['id'] . "'");
 										$cnt = 1;
 										while ($row = mysqli_fetch_array($sql)) {
 										?>

@@ -10,15 +10,15 @@ if (isset($_POST['submit'])) {
     $prescription_body = $_POST['prescription_body'];
     $appointment_id = $_POST['id'];
     $patient_id = $_POST['patient_id'];
-    $fees = $_POST['fees'];
-
+    $fees = $_POST['consultancyFees'];
     $tests = join(",", $_POST['tests']);
     $bal =  $_POST['tests'];
     echo $bal;
     $sql = mysqli_query($con, "insert into prescription(prescription_body,tests,appointment_id,doctor_id,patient_id) values('$prescription_body','$tests','$appointment_id','$docid','$patient_id')");
+    mysqli_query($con, "UPDATE appointment set status = 'completed' where id = '$appointment_id'");
     mysqli_query($con, "UPDATE users set total_due = total_due + '$fees' where id = '$patient_id'");
 
-    
+
     if ($sql) {
         echo "<script>alert('Patient info added Successfully');</script>";
         header('location:add-prescription.php');
@@ -109,10 +109,15 @@ if (isset($_POST['submit'])) {
                                                             $sql = mysqli_query($con, "select users.fullName as fname,appointment.*  from appointment join users on users.id=appointment.userId where appointment.doctorId='" . $_SESSION['id'] . "'");
                                                             $cnt = 1;
                                                             while ($row = mysqli_fetch_array($sql)) {
+                                                                if($row['status']!='active'){
+                                                                    continue;
+                                                                }
+
+
                                                             ?>
                                                             <option value="<?php echo $row['id']; ?>"
                                                                 data="<?php echo $row['patient_problem']; ?>"
-                                                                patient-id="<?php echo $row['userId']; ?>">
+                                                                patient-id="<?php echo $row['userId']; ?>" consultancyFees=<?php echo $row['consultancyFees']; ?>>
                                                                 <?php echo $row['fname']; ?> |
                                                                 <?php echo $row['appointmentDate'] . ' ' . $row['appointmentTime']; ?>
 
@@ -134,7 +139,7 @@ if (isset($_POST['submit'])) {
                                                             class="form-control" placeholder="Write prescription here"
                                                             required="true" rows="7"></textarea>
                                                     </div>
-                                                    <input type="text" hidden name="fees" value="<?php echo $row['consultancyFees']; ?>">
+                                                    <input id="fees" type="text" hidden name="consultancyFees" >
                                                     <div class="form-group">
                                                         <fieldset>
                                                             <legend>Add Tests</legend>
@@ -170,7 +175,7 @@ if (isset($_POST['submit'])) {
                                                         </fieldset>
                                                     </div>
 
-                                                    <input id="pid" type="text" name="patient_id" hidden>
+                                                    <input id="pid" type="text" name="patient_id" value="<?php echo $row['userId']; ?>" hidden>
                                                     <button type="submit" name="submit" id="submit"
                                                         class="btn btn-o btn-primary block">
                                                         Confirm Submit
@@ -227,6 +232,7 @@ if (isset($_POST['submit'])) {
     $('#appointment_select').change(function() {
         $('#patient_problem').text($(this).find(':selected').attr('data'))
         $('#pid').val($(this).find(':selected').attr('patient-id'))
+        $('#fees').val($(this).find(':selected').attr('consultancyFees'))
 
     });
     jQuery(document).ready(function() {

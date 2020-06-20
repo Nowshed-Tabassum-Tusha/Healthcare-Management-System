@@ -22,7 +22,7 @@
 						<ul class="nav navbar-right">
 							<!-- start: MESSAGES DROPDOWN -->
 								<li  style="padding-top:2% ">
-								<h2>Hospital Management System</h2>
+								
 							</li>
 						
 						
@@ -52,6 +52,9 @@
 							</li>
 							<!-- end: USER OPTIONS DROPDOWN -->
 						</ul>
+
+						<div class="text-center p-3" style="margin-top:15px ;"><h2>Online Healthcare Management System</h2></div>
+
 						<!-- start: MENU TOGGLER FOR MOBILE DEVICES -->
 						<div class="close-handle visible-xs-block menu-toggler" data-toggle="collapse" href=".navbar-collapse">
 							<div class="arrow-left"></div>

@@ -46,14 +46,7 @@ check_login();
 							<div class="col-sm-8">
 								<h1 class="mainTitle">Patient | Dashboard</h1>
 							</div>
-							<ol class="breadcrumb">
-								<li>
-									<span>User</span>
-								</li>
-								<li class="active">
-									<span>Dashboard</span>
-								</li>
-							</ol>
+							
 						</div>
 					</section>
 					<!-- end: PAGE TITLE -->

@@ -39,6 +39,13 @@ body{
 .top-nav{
 	float:right;
 }
+.title-home{
+	font-size: 40px!important;
+	color:skyblue;
+	font-weight: bold;
+
+
+}
 .top-nav ul li{
 	display:inline-block;
 	float: left;

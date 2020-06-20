@@ -1,23 +1,28 @@
 <?php
 session_start();
-//error_reporting(0);
-include('include/config.php');
+
+include('include/config.php'); 
 include('include/checklogin.php');
 check_login();
 
+
 if (isset($_POST['submit'])) {
+
     $userid = $_SESSION['id'];
-    $id = $_POST['id'];
+
+    $appointment_id = $_POST['id'];
     $appdate = $_POST['appdate'];
     $time = $_POST['apptime'];
-    $query = mysqli_query($con, "update appointment set consultancyFees = consultancyFees + 50,appointmentDate = '$appdate',appointmentTime ='$time' where id = '$id'");
+    $query = mysqli_query($con, "update appointment set consultancyFees = consultancyFees + 50,appointmentDate = '$appdate',appointmentTime ='$time' where id = '$appointment_id'");
     if ($query) {
-        echo "<script>alert('Your appointment successfully booked');</script>";
+        echo "<script>alert('Your appointment successfully rescheduled');</script>";
         header('location:appointment-history.php');
     } else {
         echo $query;
     }
 }
+// done
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,32 +43,6 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/plugins.css">
     <link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
-    <!-- <script>
-		function getdoctor(val) {
-			$.ajax({
-				type: "POST",
-				url: "get_doctor.php",
-				data: 'specilizationid=' + val,
-				success: function(data) {
-					$("#doctor").html(data);
-				}
-			});
-		}
-	</script>
-
-
-	<script>
-		function getfee(val) {
-			$.ajax({
-				type: "POST",
-				url: "get_doctor.php",
-				data: 'doctor=' + val,
-				success: function(data) {
-					$("#fees").html(data);
-				}
-			});
-		}
-	</script> -->
 
 
 
@@ -84,7 +63,7 @@ if (isset($_POST['submit'])) {
                     <section id="page-title">
                         <div class="row">
                             <div class="col-sm-8">
-                                <h1 class="mainTitle">Patient | Reschedule Appointment</h1>
+                                <h1 id="tushastitle" class="mainTitle">Patient | Reschedule Appointment</h1>
                             </div>
                             <ol class="breadcrumb">
                                 <li>
@@ -136,7 +115,7 @@ if (isset($_POST['submit'])) {
                                                         <input class="form-control" name="apptime" id="timepicker1" required="required">eg : 10:00 PM
                                                     </div>
 
-                                                    <button type="submit" name="submit" class="btn btn-o btn-primary">
+                                                    <button type="submit" name="submit" class="btn" style="color:white;background:skyblue">
                                                         Confirm Reschedule
                                                     </button>
                                                 </form>

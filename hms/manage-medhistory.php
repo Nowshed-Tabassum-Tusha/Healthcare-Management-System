@@ -96,7 +96,7 @@ if (isset($_GET['cancel'])) {
                                             </td>
                                             <td> <a href="view-medhistory.php?viewid=<?php echo $row['id'];?>"><i
                                                         class="btn btn-info fa fa-eye"> View Prescription</i></a></td>
-                                                        <td> <a href="view-report.php?id=<?php echo $row['id'];?>"><i
+                                                        <td> <a href="view-report.php?id=<?php echo $row['appointment_id'];?>"><i
                                                         class="btn btn-danger fa fa-eye"> View Reports</i></a></td>
 
                                         </tr>
